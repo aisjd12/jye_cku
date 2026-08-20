@@ -8,6 +8,7 @@
 jye_cku/
 ├── README.md        # 本索引
 ├── 信息泄露/         # 信息泄露专题（Burp Academy 靶场）
+├── xss跨站脚本漏洞/   # XSS 跨站脚本专题（Burp Academy 靶场）
 ├── 渗透笔记/         # 渗透测试学习笔记
 └── 靶场笔记/         # 靶场通关笔记
 ```
@@ -59,6 +60,21 @@ PortSwigger Web Security Academy — Information disclosure 分类靶场笔记�
 | [[信息泄露/版本控制中的信息泄露]] | .git 泄露 / 历史提交挖密码 |
 
 通用方法论与防御见 [[信息泄露/README]]。
+
+## 💉 XSS 跨站脚本漏洞专题
+
+PortSwigger Web Security Academy — Cross-site scripting 分类靶场笔记。
+
+| 靶场 | 类型 | 核心 |
+|------|------|------|
+| [[xss跨站脚本漏洞/DOM xss 在sack中使用源代码 document.write location.search]] | DOM 型 | `location.search` → `document.write` |
+| [[xss跨站脚本漏洞/DOM xss 在sack中使用源代码 innerHTML location.search]] | DOM 型 | `location.search` → `innerHTML` |
+| [[xss跨站脚本漏洞/jQuery 选择器收集器中使用哈希变更事件的 DOM XSS]] | DOM 型 | hashchange → jQuery 选择器 sink |
+| [[xss跨站脚本漏洞/jQuery 锚属性汇入中的 DOM XSS使用源代码]] | DOM 型 | `href` 可控 → `javascript:` 伪协议 |
+| [[xss跨站脚本漏洞/将xss储存在HTML上下文中，且未编码]] | 存储型 | 评论区存库 → 全站渲染 |
+| [[xss跨站脚本漏洞/将xss映射到html上下文中，且没有编码]] | 反射型 | `/?search=` 原样反射 |
+
+三类型速记 + 方法论见 [[xss跨站脚本漏洞/README]]。
 
 ## 同步方式
 

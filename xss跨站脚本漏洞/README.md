@@ -11,6 +11,7 @@
 | [[xss跨站脚本漏洞/jQuery 选择器收集器中使用哈希变更事件的 DOM XSS]] | DOM 型 | `location.hash` → `$(选择器)` | hashchange 自动触发，无需点击 |
 | [[xss跨站脚本漏洞/jQuery 锚属性汇入中的 DOM XSS使用源代码]] | DOM 型 | `location.search` → `$('a').attr('href')` | `javascript:` 伪协议点击即执行 |
 | [[xss跨站脚本漏洞/将xss储存在HTML上下文中，且未编码]] | 存储型 | 评论区存库 → 全站渲染 | 一次注入、所有人中招 |
+| [[xss跨站脚本漏洞/将XSS存储为锚属性，并用HTML编码的双引号href]] | 存储型 | Website → `<a href>` → `javascript:` | 双引号编码仍可利用 URI scheme |
 | [[xss跨站脚本漏洞/将xss映射到html上下文中，且没有编码]] | 反射型 | `/?search=` → 服务端原样反射 | 需诱导点击恶意 URL |
 
 ## XSS 三类型速记
@@ -40,3 +41,4 @@
 - **协议白名单**：`href`/`src` 只允许 `http(s)`，拒 `javascript:`/`data:`。
 - **CSP 兜底**：`script-src` 加 nonce / 只允许可信源。
 - **HttpOnly Cookie** + 关键操作二次验证，降低被窃后危害。
+

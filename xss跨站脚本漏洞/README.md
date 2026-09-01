@@ -13,6 +13,7 @@
 | [[xss跨站脚本漏洞/将xss储存在HTML上下文中，且未编码]] | 存储型 | 评论区存库 → 全站渲染 | 一次注入、所有人中招 |
 | [[xss跨站脚本漏洞/将XSS存储为锚属性，并用HTML编码的双引号href]] | 存储型 | Website → `<a href>` → `javascript:` | 双引号编码仍可利用 URI scheme |
 | [[xss跨站脚本漏洞/将xss映射到html上下文中，且没有编码]] | 反射型 | `/?search=` → 服务端原样反射 | 需诱导点击恶意 URL |
+| [[xss跨站脚本漏洞/将XSS反射到带有角括号的JavaScript字符串中，HTML编码]] | 反射型 | `var x = '...'` → 跳出字符串 + 表达式 | 运算符法保持语法合法 |
 
 ## XSS 三类型速记
 
@@ -41,4 +42,6 @@
 - **协议白名单**：`href`/`src` 只允许 `http(s)`，拒 `javascript:`/`data:`。
 - **CSP 兜底**：`script-src` 加 nonce / 只允许可信源。
 - **HttpOnly Cookie** + 关键操作二次验证，降低被窃后危害。
+
+
 

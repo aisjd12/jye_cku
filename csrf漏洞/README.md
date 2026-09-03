@@ -1,4 +1,4 @@
-﻿# CSRF 跨站请求伪造专题
+# CSRF 跨站请求伪造专题
 
 来源：PortSwigger Web Security Academy — Cross-site request forgery 分类靶场。
 
@@ -12,6 +12,7 @@
 | [[csrf漏洞/CSRF，令牌不绑定用户会话]] | 有 Token | 用 A 的 Token + B 的 Cookie | ★★★ |
 | [[csrf漏洞/CSRF，令牌绑定在非会话Cookie上]] | Token 绑 csrfKey | CRLF 注入写 csrfKey + img onerror | ★★★★ |
 | [[csrf漏洞/CSRF，令牌在Cookie中重复]] | 双提交 Cookie | CRLF 注入写任意 csrf + 两处相等 | ★★★★ |
+| [[csrf漏洞/SameSite 通过方法覆盖 Lax 旁路]] | SameSite=Lax | GET 顶层导航 + _method=POST 方法覆盖 | ★★★★ |
 
 ## CSRF 核心原理速记
 
@@ -37,6 +38,7 @@
 | 不绑会话 | Token 不检查归属 | 用别人的 Token |
 | 绑非会话 Cookie | csrfKey 不绑 session | CRLF 写真实 csrfKey |
 | 双提交 Cookie | 只比较两处相等 | CRLF 写任意 csrf + Body 同值 |
+| SameSite=Lax | 跨站 POST 不带 Cookie | GET 顶导 + 方法覆盖（_method=POST） |
 
 ## Exploit Server 三字段
 
@@ -75,6 +77,17 @@
 4. **构造 PoC**：根据绕过方式构造 HTML 表单，放到 Exploit Server。
 5. **投递验证**：Store → Deliver exploit to victim → 检查 victim 是否中招。
 
+## SameSite 速记
+
+`
+SameSite=Lax 时跨站三道隔离：
+  ✅ GET 顶层导航带 Cookie（<a> / location / form GET submit）
+  ❌ 跨站 POST 表单不带 Cookie
+  ❌ img / fetch / XHR 不带 Cookie
+`
+
+绕过思路：**用带 Cookie 的触发方式（GET 顶导）+ 方法覆盖（_method=POST）骗服务端**。
+
 ## 防御红线
 
 - **使用 CSRF Token**：绑定到当前会话，校验存在性和有效性。
@@ -84,7 +97,7 @@
 - **Token 一次性使用**：用后即焚，防重放。
 - **过滤 CRLF**：防止用户输入注入 HTTP 响应头。
 
-## 踩坑总结（6 关通用）
+## 踩坑总结（7 关通用）
 
 | 坑 | 原因 | 解决 | 出现关卡 |
 |----|------|------|---------|

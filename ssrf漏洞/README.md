@@ -9,6 +9,7 @@
 | [[ssrf漏洞/对本地服务器进行基础SSRF]] | SSRF → 本地管理接口 | `stockApi` 改成 `http://localhost/admin/delete?...`（嵌套 URL 需二次编码） | ★ |
 | [[ssrf漏洞/基础SSRF对抗另一个后端系统]] | SSRF → 内网主机管理接口 | stockApi 扫描 192.168.0.0/24 定位隐藏后端 | ★★ |
 | [[ssrf漏洞/带外检测的盲SSRF]] | 盲 SSRF + OOB 回连 | 用 Collaborator 域名让服务器主动访问你，产生 DNS/HTTP 交互 | ★★ |
+| [[ssrf漏洞/带有黑名单输入滤波器的SSRF]] | SSRF + 黑名单绕过 | 等价 IP、大小写、二次 URL 编码绕过 `localhost` / `admin` 过滤 | ★★★ |
 
 ## 核心概念速记
 

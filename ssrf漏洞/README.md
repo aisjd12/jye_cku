@@ -11,6 +11,7 @@
 | [[ssrf漏洞/带外检测的盲SSRF]] | 盲 SSRF + OOB 回连 | 用 Collaborator 域名让服务器主动访问你，产生 DNS/HTTP 交互 | ★★ |
 | [[ssrf漏洞/带有黑名单输入滤波器的SSRF]] | SSRF + 黑名单绕过 | 等价 IP、大小写、二次 URL 编码绕过 `localhost` / `admin` 过滤 | ★★★ |
 | [[ssrf漏洞/通过开放重定向绕过SSRF过滤]] | SSRF + 开放重定向绕过 | `stockApi` 先指向 `nextProduct`，再通过 302 跳到内网管理接口 | ★★★ |
+| [[ssrf漏洞/盲SSRF配合Shellshock漏洞]] | 盲 SSRF + Shellshock 命令执行 | `User-Agent` 带 payload，`Referer`/`stockApi` 指向内网，命令结果经 Collaborator 带出 | ★★★★ |
 
 ## 核心概念速记
 
